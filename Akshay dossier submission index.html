@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RBC INDIA | Submission #140625-Darsy</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --rbc-blue: #0a3d62; --gold: #c5a059; --bg: #f3f4f6; --text: #1f2937; --danger: #ef4444; --success: #22c55e; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* App Layout */
+        #main-container { max-width: 1200px; margin: 20px auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); display: flex; flex: 1; }
+        
+        /* Sidebar Navigation */
+        #sidebar { width: 280px; background: var(--rbc-blue); color: white; padding: 30px; display: flex; flex-direction: column; border-right: 4px solid var(--gold); }
+        #sidebar-header { margin-bottom: 40px; }
+        .tab-btn { background: none; border: none; color: white; padding: 15px 20px; text-align: left; font-size: 1rem; cursor: pointer; border-radius: 8px; transition: 0.3s; width: 100%; display: flex; align-items: center; margin-bottom: 10px;}
+        .tab-btn:hover, .tab-btn.active { background: rgba(255,255,255,0.1); border-left: 4px solid var(--gold); font-weight: 600; }
+        .tab-btn span { margin-left: 10px;}
+
+        /* Content Area */
+        #content { flex: 1; padding: 50px; overflow-y: auto; }
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Typography & Components */
+        h1, h2 { color: var(--rbc-blue); font-weight: 700; margin-top: 0; }
+        h1 { font-family: 'Roboto Mono', monospace; font-size: 2rem; border-bottom: 2px solid var(--gold); padding-bottom: 10px; margin-bottom: 30px;}
+        p { line-height: 1.8; font-weight: 300;}
+        
+        /* Images & Placeholders */
+        .image-placeholder { width: 100%; height: 300px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 2px dashed #9ca3af; color: #6b7280; font-size: 0.9rem; margin: 20px 0; overflow: hidden;}
+        .image-placeholder img { width: 100%; height: 100%; object-fit: cover;}
+
+        /* Regulatory UI Elements */
+        .log-box { background: #f9fafb; border: 1px solid #e5e7eb; padding: 25px; border-radius: 8px; border-left: 4px solid var(--rbc-blue); margin-bottom: 30px; }
+        .log-date { font-weight: bold; color: var(--rbc-blue); font-family: 'Roboto Mono', monospace; margin-bottom: 10px;}
+        .deviation-alert { background: #fee2e2; border: 1px dashed var(--danger); color: #991b1b; padding: 15px; border-radius: 6px; font-style: italic; margin-top: 15px;}
+        .status-badge { display: inline-block; background: #e5e7eb; color: #4b5563; padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; text-transform: uppercase; font-weight: 600;}
+
+        /* Final Action UI */
+        #action-area { text-align: center; padding: 60px 0; background: #f8fafc; border-radius: 10px; border: 3px double var(--gold); margin-top: 50px;}
+        .btn { padding: 18px 40px; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; transition: 0.3s; margin: 10px; width: 300px;}
+        #btn-approve { background: var(--success); color: white; }
+        #btn-approve:hover { background: #16a34a; transform: scale(1.05); }
+        #btn-wait { background: #94a3b8; color: white; }
+        
+        /* Signature */
+        .signature-box { margin-top: 40px; border-top: 2px solid #cbd5e1; padding-top: 20px; font-family: 'Roboto Mono', monospace; text-align: left; max-width: 400px; margin-left: auto; margin-right: auto;}
+    </style>
+</head>
+<body>
+
+<div id="main-container">
+    <div id="sidebar">
+        <div id="sidebar-header">
+            <h2 style="color:white; font-size:1.5rem;">RBC INDIA</h2>
+            <p style="font-size:0.8rem; opacity:0.8;">Regulatory Submission File</p>
+        </div>
+        <button class="tab-btn active" onclick="openTab(event, 'file_a')"><span>📁</span><span>File A: Executive Summary</span></button>
+        <button class="tab-btn" onclick="openTab(event, 'file_b')"><span>📁</span><span>File B: Clinical Data (1&2)</span></button>
+        <button class="tab-btn" onclick="openTab(event, 'file_c')"><span>📁</span><span>File C: Clinical Data (3&4)</span></button>
+        <button class="tab-btn" onclick="openTab(event, 'file_d')"><span>📁</span><span>File D: Quality Report</span></button>
+        <button class="tab-btn" onclick="openTab(event, 'file_e')"><span>📁</span><span>File E: Authorization</span></button>
+    </div>
+
+    <div id="content">
+        <div id="file_a" class="tab-content active">
+            <span class="status-badge">Phase: Initial Filing</span>
+            <h1>File A: Official Submission Transmittal</h1>
+            <p>Welcome to the digital Master File #140625. Submitted by Akshay (Regulatory Affairs - Nutrition) for the immediate review of Darshani (Senior Executive - Drug).</p>
+            
+            <div style="display:flex; gap:20px; margin-top:30px;">
+                <div class="image-placeholder" style="width:50%; height:200px;">
+                    <img src="akshay_profile.jpg" alt="[Insert Akshay Photo]">
+                </div>
+                <div class="image-placeholder" style="width:50%; height:200px;">
+                    <img src="darshani_profile.jpg" alt="[Insert Darshani Photo]">
+                </div>
+            </div>
+
+            <div class="log-box">
+                <div class="log-date">14 JUNE 2025: Initial Contact (The Hint)</div>
+                <p>The story officially entered induction on this date. In front of the entire RBC India team, you asked me for a reminder for tomorrow’s <strong>Sankashti Chaturthi</strong> fast. To everyone else, it was a task. To me, it was the first critical 'hint' that you were interested. We started talking. You trusted me with your past and bad decisions; I reciprocated. This filing is the direct result of that moment.</p>
+            </div>
+        </div>
+
+        <div id="file_b" class="tab-content">
+            <span class="status-badge">Phase: Clinical Trials</span>
+            <h1>File B: Verification of Compatibility</h1>
+            <p>This file documents the first two physical site visits used for stability testing.</p>
+
+            <div class="log-box">
+                <div class="log-date">21 JUNE 2025: Trial 01 - Inorbit Mall Protocol</div>
+                <div class="image-placeholder"><img src="inorbit_idli.jpg" alt="[Insert Inorbit/Idli Photo]"></div>
+                <p>We met at 22nd Parallel restaurant. My dominant memory is simple and sweet: you ate <strong>Idli</strong>, and I realized how much I enjoyed just being there with you. It was a high-compatibility initial audit.</p>
+            </div>
+
+            <div class="log-box">
+                <div class="log-date">27 JUNE 2025: Trial 02 - Alembic City Audit</div>
+                <div class="image-placeholder"><img src="alembic_meet.jpg" alt="[Insert Alembic City Photo]"></div>
+                <p>A beautiful day. Compatibility was confirmed by Rakesh Sir from our department spotting us together. However, a major deviation was recorded:</p>
+                <div class="deviation-alert">
+                    <strong>MAJOR DEVIATION REPORT:</strong> Darshani, I touched you many times without your permission. I’ve carried the regret of violating that trust. This submission is my unconditional promise that our future is built on 100% compliance with your boundaries and respect for your space. I am sincerely sorry.
+                </div>
+                <p>After this date, you required time alone, and your parents arrived from Bangalore, beginning a pause in the trials.</p>
+            </div>
+        </div>
+
+        <div id="file_c" class="tab-content">
+            <span class="status-badge">Phase: Stability Testing</span>
+            <h1>File C: Persistence & The Hiatus</h1>
+            <p>This file documents the later, more complex trials and the subsequent hold placed on the submission.</p>
+
+            <div class="log-box">
+                <div class="log-date">21 JULY 2025: Trial 03 - Nirvana Cafe 'Pachaka'</div>
+                <div class="image-placeholder"><img src="nirvana_ketchup.jpg" alt="[Insert Cafe/Ketchup Photo]"></div>
+                <p>The day of the famous tomato ketchup packet 'pachaka'. It was a messy incident, but seeing how you handled it confirmed my initial analysis: you are special. It’s one of my favorite difficult memories.</p>
+            </div>
+
+            <div class="log-box">
+                <div class="log-date">15 SEP 2025: Trial 04 - Tea Post Hurdle (Hold Order)</div>
+                <p>The last official meeting. Your mother presented some practical parameters, suggesting we don't meet again. This felt like a 'Stop Work' order. I was angry—not at you, but at the situation. That anger has passed; my hope for a new beginning has not. Despite repeated attempts to convince you to meet, the file remains active based on that hope.</p>
+            </div>
+        </div>
+
+        <div id="file_d" class="tab-content">
+            <span class="status-badge">Phase: Quality Assurance</span>
+            <h1>File D: Specifications of the Heart</h1>
+            <p>This report quantifies why the applicant (Akshay) believes the subject (Darshani) is the optimal match.</p>
+
+            <div class="log-box" style="background:#f0f9ff; border-left:4px solid #0284c7;">
+                <p><strong>Ingredient:</strong> Darshani (Darsy)</p>
+                <p><strong>Purity Level:</strong> 100% Transparent. This is your defining quality. You do not hide who you are, and that transparency won me over completely.</p>
+                <p><strong>Effect:</strong> Maximum support. You stood by me during every single tough situation I’ve faced at RBC India and in life. You are medicine for my spirit.</p>
+            </div>
+        </div>
+
+        <div id="file_e" class="tab-content">
+            <span class="status-badge" style="background: var(--danger); color: white;">Phase: FINAL SIGNATORY</span>
+            <h1>File E: Grant of Market Authorization</h1>
+            <p>Darshani, the dossiers are compiled, the stability tests are complete, and the deviations have been noted and resolved with a commitment to respect. This is the only submission that matters to me.</p>
+
+            <div id="action-area">
+                <p style="font-size:1.1rem; max-width:600px; margin:auto; margin-bottom:30px;">I don’t want a lifetime contract right now, Darshani. I just want to pause the 'office work' and get back to being your person. Will you grant me final approval?</p>
+                <h2 style="font-size:2.5rem; color:var(--success);">Will you be my girlfriend?</h2>
+                
+                <div style="margin-top:40px;">
+                    <button id="btn-approve" class="btn" onclick="celebrateApprove()">✅ GRANT AUTHORIZATION (YES)</button>
+                    <button id="btn-wait" class="btn" onclick="alert('The file remains open. Authorization remains on hope. I am waiting for you.')">⏳ PENDING REVIEW / THINKING</button>
+                </div>
+
+                <div class="signature-box">
+                    <p>Submitted with Hope,</p>
+                    <p style="font-size:1.2rem; font-weight:700;">Akshay</p>
+                    <p>RBC India - Nutrition Division</p>
+                    <p>Filing Date: 27 Feb 2026</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabId) {
+        // Hide all tabs
+        var tabContent = document.getElementsByClassName("tab-content");
+        for (var i = 0; i < tabContent.length; i++) {
+            tabContent[i].classList.remove("active");
+        }
+        // Remove 'active' class from all buttons
+        var tabBtn = document.getElementsByClassName("tab-btn");
+        for (var i = 0; i < tabBtn.length; i++) {
+            tabBtn[i].classList.remove("active");
+        }
+        // Show the current tab, and add 'active' class to the button
+        document.getElementById(tabId).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
+    function celebrateApprove() {
+        confetti({
+            particleCount: 200,
+            spread: 120,
+            origin: { y: 0.7 }
+        });
+        document.getElementById('action-area').style.borderColor = var(--success);
+        alert("Authorization Granted! The partnership is active. You’ve made my hope come true, Darshani.");
+    }
+</script>
+
+</body>
+</html>
